@@ -18,3 +18,8 @@ spec:
         - name: consumer
           image: consumer
           imagePullPolicy: Never
+          ports:
+          - containerPort: 8081
+          env:
+          - name: VAR_1
+            value: "env"

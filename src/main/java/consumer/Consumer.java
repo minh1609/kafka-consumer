@@ -20,7 +20,7 @@ public class Consumer {
 
     private static KafkaConsumer<String, String> createKafkaConsumer(){
 
-        String boostrapServers = "127.0.0.1:9092";
+        String boostrapServers = "my-cluster-kafka-bootstrap.kafka:9092";
         String groupId = "1";
 
         // create consumer configs
@@ -40,18 +40,21 @@ public class Consumer {
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        String var_1 = System.getenv("VAR_1");
+        System.out.println(var_1);
+
         Logger log = LoggerFactory.getLogger(Consumer.class.getSimpleName());
         KafkaConsumer<String, String> consumer = createKafkaConsumer();
-        consumer.subscribe(Collections.singleton("first_topic"));
+        consumer.subscribe(Collections.singleton("test"));
 
         while(true) {
             //Step 1 Poll message
 
-            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(3000)); //timeout
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(10000)); //timeout
 
 
 
-            log.info("Polled " + records.count() );
+            log.info(var_1 + " Polled " + records.count() );
 
 
 
