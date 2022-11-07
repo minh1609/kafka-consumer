@@ -21,7 +21,7 @@ public class Consumer {
     private static KafkaConsumer<String, String> createKafkaConsumer(){
 
         String boostrapServers = "my-cluster-kafka-bootstrap.kafka:9092";
-        String groupId = "1";
+        String groupId = "group-1";
 
         // create consumer configs
         Properties properties = new Properties();
@@ -41,7 +41,6 @@ public class Consumer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         String var_1 = System.getenv("VAR_1");
-        System.out.println(var_1);
 
         Logger log = LoggerFactory.getLogger(Consumer.class.getSimpleName());
         KafkaConsumer<String, String> consumer = createKafkaConsumer();
@@ -61,7 +60,7 @@ public class Consumer {
             //Step 2 Process message
             for (ConsumerRecord<String, String> record : records) {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(7000);
                     log.info(record.value() + " is done processing");
                 } catch (Exception e){
                     log.info(e.getMessage());

@@ -16,8 +16,7 @@ spec:
     spec:
       containers:
         - name: consumer
-          image: consumer
-          imagePullPolicy: Never
+          image: minh1609/consumer
           ports:
           - containerPort: 8081
           env:
